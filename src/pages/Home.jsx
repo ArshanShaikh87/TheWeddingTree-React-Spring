@@ -10,11 +10,11 @@ import p4 from "../assets/p4.jpeg";
 import p5 from "../assets/p5.jpeg";
 import p6 from "../assets/p6.jpeg";
 
-import g1 from "../assets/gallery1.jpg";
-import g2 from "../assets/gallery2.jpg";
-import g3 from "../assets/gallery3.jpg";
-import g4 from "../assets/gallery4.jpg";
-import g5 from "../assets/gallery5.jpg";
+import g1 from "../assets/Gallery1.jpg";
+import g2 from "../assets/Gallery2.jpg";
+import g3 from "../assets/Gallery3.jpg";
+import g4 from "../assets/Gallery4.jpg";
+import g5 from "../assets/Gallery5.jpg";
 import g6 from "../assets/hero.jpeg";
 
 
