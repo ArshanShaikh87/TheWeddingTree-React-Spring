@@ -1,0 +1,421 @@
+/* ================= About Hero ================= */
+
+.about-hero {
+  background-color: var(--bg-color);
+  text-align: center;
+  padding: 140px 20px;
+}
+
+.about-hero h1 {
+  font-size: var(--big-font);
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+
+.about-hero p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: var(--p-font);
+  color: var(--second-color);
+}
+
+.about-hero {
+  background-color: var(--bg-color);
+  text-align: center;
+  padding: 140px 20px;
+}
+
+.about-hero h1 {
+  font-size: var(--big-font);
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.about-hero p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: var(--p-font);
+  color: var(--second-color);
+  line-height: 1.7;
+}
+
+
+@media (max-width: 768px) {
+
+  .about-hero {
+    padding: 100px 20px;
+    text-align:left;
+  }
+
+  .about-hero h1 {
+    font-size: 2.2rem;
+    /* text-align: left; */
+  }
+
+  .about-hero p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+}
+
+
+/* ================= Our Story ================= */
+
+.our-story {
+  background-color: #1f1f1f;
+}
+
+.story-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-text h2 {
+  font-size: var(--h2-font);
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.story-text p {
+  margin-bottom: 20px;
+  font-size: var(--p-font);
+  color: var(--second-color);
+  line-height: 1.8;
+  text-align: left;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.story-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.story-image img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 450px;
+}
+
+@media (max-width: 900px) {
+
+  .story-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .story-image img {
+    height: 300px;
+  }
+
+  .story-text h2{
+    font-size: 2rem;
+    text-align: center;
+  }
+  .story-text p{
+    font-size: 1rem;
+    text-align: left;
+  }
+
+}
+
+/* ================= Mission & Vision ================= */
+
+.mission-vision {
+  background-color: var(--second-color);
+}
+
+.mission-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.mission-card {
+  background: #252525;
+  padding: 40px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.mission-card h3 {
+  color: var(--heading-color);
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.mission-card p {
+  font-size: var(--p-font);
+  color: var(--second-color);
+  line-height: 1.8;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+}
+
+.mission-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* Force mobile layout */
+@media (max-width: 768px) {
+
+  .mission-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mission-card {
+    padding: 30px;
+  }
+  .mission-card p {
+  
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+}
+
+/* ================= Our Process ================= */
+
+.our-process {
+  background-color:var(--bg-color);
+  text-align: center;
+}
+
+.process-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.process-step span {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+}
+
+.process-step h4 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.process-step p {
+  font-size: var(--p-font);
+  color: var(--second-color);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+
+  .process-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-step p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+}
+
+@media (max-width: 600px) {
+
+  .process-container {
+    grid-template-columns: 1fr;
+  }
+  .process-step p {
+  font-size: 1rem;
+  line-height: 1.7;
+  
+}
+
+}
+
+/* ================= Trust Section ================= */
+
+.trust-section {
+  background-color: var(--bg-color);
+  text-align: center;
+}
+
+.trust-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.trust-card {
+  background: #252525;
+  padding: 35px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.trust-card h4 {
+  color: var(--heading-color);
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.trust-card p {
+  color: var(--second-color);
+  font-size: var(--p-font);
+  line-height: 1.7;
+  text-align: left;
+}
+
+.trust-card:hover {
+  transform: translateY(-5px);
+}
+
+
+@media (max-width: 900px) {
+  .trust-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .trust-card p {
+   font-size: 1rem;
+   text-align: left;
+}
+.section-title{
+        font-size: 2rem;;
+}
+.trust-card h4 {
+        text-align: left;
+}
+}
+
+@media (max-width: 600px) {
+  .trust-container {
+    grid-template-columns: 1fr;
+  }
+  .trust-card p {
+   font-size: 1rem;
+  }
+  .section-title{
+        font-size: 2rem;
+  }
+  .trust-card h4 {
+        text-align: left;
+}
+}
+
+
+/* ================= Founder Section ================= */
+
+.founder-section {
+  background-color: #1f1f1f;
+}
+
+.founder-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.founder-image img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.founder-text h2 {
+  font-size: var(--h2-font);
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+
+.founder-text p {
+  font-size: var(--p-font);
+  color: var(--second-color);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+
+  .founder-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .founder-image img {
+    height: 300px;
+  }
+
+  .founder-text p {
+    font-size: 1rem;
+    text-align:left;
+}
+   .founder-text h2 {
+    font-size: 2rem;
+}
+
+
+}
+
+
+/* ================= About CTA ================= */
+
+.about-cta {
+  background-color: var(--bg-color);
+  text-align: center;
+}
+
+.about-cta-container h2 {
+  font-size: var(--h2-font);
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+
+.about-cta-container p {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  font-size: var(--p-font);
+  color: var(--second-color);
+}
+
+.about-cta .btn {
+  padding: 12px 30px;
+  background-color: var(--heading-color);
+  color: var(--bg-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.about-cta .btn:hover {
+  opacity: 0.9;
+}
+@media (max-width: 768px) {
+  .about-cta-container h2 {
+    font-size: 2rem;
+  }
+  .about-cta-container h2{
+        font-size: 2rem;
+  }
+  .about-cta-container p{
+        font-size: 1rem;
+  }
+}
