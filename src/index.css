@@ -1,0 +1,85 @@
+/* ============================= */
+/* Reset */
+/* ============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: #ededed;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================= */
+/* Design Tokens */
+/* ============================= */
+
+:root {
+  --bg-color: #2a2a2a;
+  --heading-color: #D4AF37;
+  --second-color: #ededed;
+  --champagne: #8C7B6B;
+
+  --big-font: 5rem;
+  --h2-font: 2.7rem;
+  --p-font: 1.1rem;
+
+  --container-width: 1200px;
+}
+
+/* ============================= */
+/* Global Typography */
+/* ============================= */
+
+h1 {
+  font-size: var(--big-font);
+  color: var(--heading-color);
+}
+
+h2 {
+  font-size: var(--h2-font);
+  color: var(--heading-color);
+}
+
+p {
+  font-size: var(--p-font);
+}
+
+/* ============================= */
+/* Layout System */
+/* ============================= */
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--heading-color);
+  color: #2a2a2a;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
