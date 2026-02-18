@@ -10,6 +10,13 @@ import p4 from "../assets/p4.jpeg";
 import p5 from "../assets/p5.jpeg";
 import p6 from "../assets/p6.jpeg";
 
+import g1 from "../assets/gallery1.jpg";
+import g2 from "../assets/gallery2.jpg";
+import g3 from "../assets/gallery3.jpg";
+import g4 from "../assets/gallery4.jpg";
+import g5 from "../assets/gallery5.jpg";
+import g6 from "../assets/hero.jpeg";
+
 
 const Home = () => {
 
@@ -301,25 +308,26 @@ return (
     <h2 className="section-title">Featured Gallery</h2>
 
     <div className="gallery-grid">
-      <div className="gallery-item">
-        <img src="/src/assets/Gallery1.jpg" alt="Wedding 1" />
-      </div>
-      <div className="gallery-item">
-        <img src="/src/assets/Gallery2.jpg" alt="Wedding 2" />
-      </div>
-      <div className="gallery-item">
-        <img src="/src/assets/Gallery3.jpg" alt="Wedding 3" />
-      </div>
-      <div className="gallery-item">
-        <img src="/src/assets/Gallery4.jpg" alt="Wedding 4" />
-      </div>
-      <div className="gallery-item">
-        <img src="/src/assets/Gallery5.jpg" alt="Wedding 5" />
-      </div>
-      <div className="gallery-item">
-        <img src="/src/assets/hero.jpeg" alt="Wedding 6" />
-      </div>
-    </div>
+  <div className="gallery-item">
+    <img src={g1} alt="Wedding 1" />
+  </div>
+  <div className="gallery-item">
+    <img src={g2} alt="Wedding 2" />
+  </div>
+  <div className="gallery-item">
+    <img src={g3} alt="Wedding 3" />
+  </div>
+  <div className="gallery-item">
+    <img src={g4} alt="Wedding 4" />
+  </div>
+  <div className="gallery-item">
+    <img src={g5} alt="Wedding 5" />
+  </div>
+  <div className="gallery-item">
+    <img src={g6} alt="Wedding 6" />
+  </div>
+</div>
+
 
     <div className="gallery-cta">
       <a href="/gallery" className="btn">
