@@ -66,17 +66,36 @@
 }
 
 @media (max-width: 900px) {
+
   .footer-container {
     grid-template-columns: 1fr;
+    gap: 40px;
     text-align: center;
   }
-  .footer-social {
-    text-align: center;   /* 👈 ensure title center */
+
+  /* Quick Links in 2 columns */
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+    justify-items: center;
   }
 
-  .social-icons {
-    justify-content: center;   /* 👈 icons center */
+  .footer-links h4 {
+    grid-column: span 2;
+    margin-bottom: 15px;
   }
+
+  /* Contact compact */
+  .footer-contact p {
+    margin-bottom: 6px;
+  }
+
+  /* Social icons center */
+  .social-icons {
+    justify-content: center;
+  }
+
 }
 
 
