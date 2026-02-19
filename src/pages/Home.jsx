@@ -293,7 +293,7 @@ return (
       </div>
 
     </div>
-    <div className="services-cta">
+    <div className="services-btn">
   <a href="/services" className="btn">
     Explore All Services
   </a>

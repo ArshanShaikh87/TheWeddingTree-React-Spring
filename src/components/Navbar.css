@@ -56,7 +56,7 @@ margin-top: 10px;
 
 /* CTA Button */
 
-.nav-btn {
+.head-btn {
   padding: 8px 18px;
   background-color: var(--heading-color);
   color: var(--bg-color) !important;
@@ -64,7 +64,7 @@ margin-top: 10px;
   font-weight: 600;
 }
 
-.nav-btn:hover {
+.head-btn:hover {
   opacity: 0.85;
 }
 

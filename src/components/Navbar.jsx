@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link to="/about">About</Link>
           <Link to="/services">Services</Link>
           <Link to="/gallery">Gallery</Link>
-          <Link to="/contact" className="nav-btn">
+          <Link to="/contact" className="head-btn">
             Book Consultation
           </Link>
         </nav>
@@ -45,8 +45,8 @@ const Navbar = () => {
         <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
         <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
         <Link to="/gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-        <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-        <Link to="/contact" className="nav-btn" onClick={() => setMenuOpen(false)}>Book Consultation</Link>
+        {/* <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link> */}
+        <Link to="/contact" className="head-btn" onClick={() => setMenuOpen(false)}>Book Consultation</Link>
       </div>
     </header>
   );
