@@ -211,7 +211,7 @@ const Gallery = () => {
 <section className="section gallery-video-section">
   <div className="container">
 
-    <h2 className="section-title">Wedding Films</h2>
+    <h2 className="section-title">Films</h2>
 
     <div className="gallery-video-grid">
 
