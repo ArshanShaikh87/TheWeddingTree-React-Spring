@@ -36,7 +36,7 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/contact",
+        "https://the-wedding-tree-backend.onrender.com",
         formData
       );
 
