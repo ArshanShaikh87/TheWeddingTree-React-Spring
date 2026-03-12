@@ -1,9 +1,26 @@
 /* ================= About Hero ================= */
-
-.about-hero {
-  background-color: var(--bg-color);
+.section-about-hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   text-align: center;
-  padding: 140px 20px;
+  justify-content: center;
+  background: url("../assets/Gallery5.jpg")center/cover no-repeat;
+}
+
+/* .section-about-hero{
+  background-color: var(--bg-color);
+  background: url("../assets/Gallery5.jpg")center/cover no-repeat;
+  text-align: center;
+  padding: 160px 40px;  
+} */
+.about-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
 }
 
 .about-hero h1 {

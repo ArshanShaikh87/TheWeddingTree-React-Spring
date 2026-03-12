@@ -5,13 +5,15 @@ const About = () => {
     <main>
 
       {/* 1️⃣ About Hero Section */}
-      <section className="section about-hero">
+      <section className="section-about-hero">
+        <div className="about-overlay">
         <div className="container">
           <h1>Where Elegance Meets Excellence</h1>
           <p>
             We design refined, detail-driven wedding experiences
             that reflect your story with sophistication and grace.
           </p>
+        </div>
         </div>
       </section>
 
