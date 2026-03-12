@@ -6,12 +6,14 @@ const Services = () => {
 
       {/* 1️⃣ Services Hero */}
       <section className="section services-hero">
+        < div className="services-overlay">
         <div className="container">
           <h1>Our Wedding Services</h1>
           <p>
             Curated luxury planning solutions designed to transform
             your special day into a seamless and unforgettable celebration.
           </p>
+        </div>
         </div>
       </section>
 
