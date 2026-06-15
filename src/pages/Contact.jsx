@@ -35,10 +35,10 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://the-wedding-tree-backend-1.onrender.com",
-        formData
-      );
+const response = await axios.post(
+  "https://the-wedding-tree-backend-1.onrender.com/api/contact",
+  formData
+);
 
       if (response.status === 200) {
         setSuccessMessage("Your inquiry has been submitted successfully!");
