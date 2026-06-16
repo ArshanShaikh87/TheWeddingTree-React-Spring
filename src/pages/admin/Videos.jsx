@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "./admin.css";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const Videos = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingVideo, setEditingVideo] = useState(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    youtube_url: "",
-  });
+  const [formData, setFormData] = useState({ title: "", youtube_url: "" });
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
@@ -25,17 +22,12 @@ const Videos = () => {
 
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate("/admin/login");
-    }
+    if (!session) navigate("/admin/login");
   };
 
   const fetchVideos = async () => {
     try {
-      const { data, error } = await supabase
-        .from("videos")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("videos").select("*").order("created_at", { ascending: false });
       if (error) throw error;
       setVideos(data);
     } catch (error) {
@@ -48,9 +40,7 @@ const Videos = () => {
   const getYouTubeEmbedUrl = (url) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
-    return match && match[2].length === 11
-      ? `https://www.youtube.com/embed/${match[2]}`
-      : null;
+    return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
   };
 
   const handleSubmit = async (e) => {
@@ -76,10 +66,7 @@ const Videos = () => {
 
   const handleEdit = (video) => {
     setEditingVideo(video);
-    setFormData({
-      title: video.title,
-      youtube_url: video.youtube_url,
-    });
+    setFormData({ title: video.title, youtube_url: video.youtube_url });
     setShowForm(true);
   };
 
@@ -96,99 +83,112 @@ const Videos = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
-        <div className="text-[#D4AF37] text-xl">Loading...</div>
+      <div className="admin-page">
+        <div className="admin-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "60vh" }}>
+          <p style={{ color: "var(--admin-muted)", fontSize: "1.2rem" }}>Loading...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="admin-page">
       {/* Header */}
-      <div className="bg-[#2a2a2a] border-b border-gray-800 px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <Link to="/admin/dashboard" className="text-[#D4AF37] hover:underline">← Back</Link>
-          <h1 className="text-2xl font-bold text-[#D4AF37]">Videos Management</h1>
+      <div className="admin-header">
+        <div className="admin-header-left">
+          <Link to="/admin/dashboard" className="admin-back-btn">← Dashboard</Link>
+          <h1>Videos Management</h1>
         </div>
         <button
+          className="admin-btn admin-btn-primary"
           onClick={() => {
             setEditingVideo(null);
             setFormData({ title: "", youtube_url: "" });
             setShowForm(!showForm);
           }}
-          className="bg-[#D4AF37] text-[#1a1a1a] px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition"
         >
-          {showForm ? "Cancel" : "Add Video"}
+          {showForm ? "Cancel" : "+ Add Video"}
         </button>
       </div>
 
-      {/* Form */}
-      {showForm && (
-        <div className="p-6 max-w-2xl mx-auto">
-          <div className="bg-[#2a2a2a] p-6 rounded-xl">
-            <h2 className="text-xl font-bold text-[#D4AF37] mb-4">
-              {editingVideo ? "Edit Video" : "Add New Video"}
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-[#ededed] mb-2">Title</label>
+      {/* Content */}
+      <div className="admin-container">
+        {/* Form */}
+        {showForm && (
+          <div className="admin-form-card">
+            <h2>{editingVideo ? "Edit Video" : "Add New Video"}</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="admin-form-group">
+                <label>Video Title</label>
                 <input
                   type="text"
+                  className="admin-form-input"
                   value={formData.title}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
-                  className="w-full bg-[#252525] border border-gray-700 rounded-lg px-4 py-3 text-[#ededed] focus:outline-none focus:border-[#D4AF37]"
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  placeholder="Enter a title for this video"
                   required
                 />
               </div>
-              <div>
-                <label className="block text-[#ededed] mb-2">YouTube URL</label>
+
+              <div className="admin-form-group">
+                <label>YouTube URL</label>
                 <input
                   type="url"
+                  className="admin-form-input"
                   value={formData.youtube_url}
-                  onChange={(e) =>
-                    setFormData({ ...formData, youtube_url: e.target.value })
-                  }
-                  className="w-full bg-[#252525] border border-gray-700 rounded-lg px-4 py-3 text-[#ededed] focus:outline-none focus:border-[#D4AF37]"
+                  onChange={(e) => setFormData({ ...formData, youtube_url: e.target.value })}
+                  placeholder="https://youtube.com/watch?v=..."
                   required
                 />
               </div>
-              <button
-                type="submit"
-                disabled={saving}
-                className="w-full bg-[#D4AF37] text-[#1a1a1a] font-bold py-3 rounded-lg hover:opacity-90 transition disabled:opacity-50"
-              >
-                {saving ? "Saving..." : "Save Video"}
-              </button>
+
+              <div className="admin-form-actions">
+                <button
+                  type="button"
+                  className="admin-btn"
+                  style={{ background: "var(--admin-border)", color: "var(--admin-text)" }}
+                  onClick={() => {
+                    setShowForm(false);
+                    setEditingVideo(null);
+                  }}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="admin-btn admin-btn-primary" disabled={saving}>
+                  {saving ? "Saving..." : editingVideo ? "Update Video" : "Save Video"}
+                </button>
+              </div>
             </form>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Videos Grid */}
-      <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Videos Grid */}
+        <div className="admin-cards-grid">
+          {videos.length === 0 && (
+            <div className="admin-card-empty">
+              No videos yet. Click "Add Video" to get started!
+            </div>
+          )}
           {videos.map((video) => (
-            <div key={video.id} className="bg-[#2a2a2a] rounded-xl overflow-hidden">
+            <div key={video.id} className="admin-card">
               <iframe
                 src={getYouTubeEmbedUrl(video.youtube_url)}
                 title={video.title}
-                className="w-full aspect-video"
+                className="admin-video-iframe"
                 allowFullScreen
               />
-              <div className="p-4">
-                <h3 className="text-[#D4AF37] font-semibold mb-3">{video.title}</h3>
-                <div className="flex gap-2">
+              <div className="admin-card-body">
+                <h3 className="admin-card-title">{video.title}</h3>
+                <div className="admin-card-actions">
                   <button
+                    className="admin-btn admin-btn-edit"
                     onClick={() => handleEdit(video)}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm transition"
                   >
                     Edit
                   </button>
                   <button
+                    className="admin-btn admin-btn-danger"
                     onClick={() => handleDelete(video.id)}
-                    className="flex-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-sm transition"
                   >
                     Delete
                   </button>
@@ -197,11 +197,6 @@ const Videos = () => {
             </div>
           ))}
         </div>
-        {videos.length === 0 && (
-          <div className="text-center text-[#ededed] py-12">
-            No videos yet. Add your first video!
-          </div>
-        )}
       </div>
     </div>
   );

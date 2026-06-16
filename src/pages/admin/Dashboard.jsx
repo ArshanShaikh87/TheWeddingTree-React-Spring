@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
+import "./admin.css";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ photos: 0, videos: 0, contacts: 0 });
@@ -46,50 +47,44 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
-        <div className="text-[#D4AF37] text-xl">Loading...</div>
+      <div className="admin-page">
+        <div className="admin-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "60vh" }}>
+          <p style={{ color: "var(--admin-muted)", fontSize: "1.2rem" }}>Loading...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="admin-page">
       {/* Header */}
-      <div className="bg-[#2a2a2a] border-b border-gray-800 px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-[#D4AF37]">Admin Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
-        >
+      <div className="admin-header">
+        <div className="admin-header-left">
+          <h1>Dashboard</h1>
+        </div>
+        <button className="admin-logout-btn" onClick={handleLogout}>
           Logout
         </button>
       </div>
 
-      {/* Stats Grid */}
-      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link
-          to="/admin/photos"
-          className="bg-[#2a2a2a] p-8 rounded-xl hover:transform hover:translate-y-[-4px] transition"
-        >
-          <h3 className="text-4xl font-bold text-[#D4AF37] mb-2">{stats.photos}</h3>
-          <p className="text-[#ededed] text-lg">Total Photos</p>
-        </Link>
+      {/* Content */}
+      <div className="admin-container">
+        <div className="admin-stats-grid">
+          <Link to="/admin/photos" className="admin-stat-card">
+            <h3>{stats.photos}</h3>
+            <p>Total Photos</p>
+          </Link>
 
-        <Link
-          to="/admin/videos"
-          className="bg-[#2a2a2a] p-8 rounded-xl hover:transform hover:translate-y-[-4px] transition"
-        >
-          <h3 className="text-4xl font-bold text-[#D4AF37] mb-2">{stats.videos}</h3>
-          <p className="text-[#ededed] text-lg">Total Videos</p>
-        </Link>
+          <Link to="/admin/videos" className="admin-stat-card">
+            <h3>{stats.videos}</h3>
+            <p>Total Videos</p>
+          </Link>
 
-        <Link
-          to="/admin/contacts"
-          className="bg-[#2a2a2a] p-8 rounded-xl hover:transform hover:translate-y-[-4px] transition"
-        >
-          <h3 className="text-4xl font-bold text-[#D4AF37] mb-2">{stats.contacts}</h3>
-          <p className="text-[#ededed] text-lg">Total Leads</p>
-        </Link>
+          <Link to="/admin/contacts" className="admin-stat-card">
+            <h3>{stats.contacts}</h3>
+            <p>New Leads</p>
+          </Link>
+        </div>
       </div>
     </div>
   );

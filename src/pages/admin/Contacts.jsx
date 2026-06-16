@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "./admin.css";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -19,19 +19,20 @@ const Contacts = () => {
 
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate("/admin/login");
-    }
+    if (!session) navigate("/admin/login");
   };
 
   const fetchContacts = async () => {
-    axios
-      .get(`${API_BASE_URL}/api/contacts`, {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/contacts`, {
         params: { search: search || undefined },
-      })
-      .then((res) => setContacts(res.data))
-      .catch((err) => console.error("Error fetching contacts:", err))
-      .finally(() => setLoading(false));
+      });
+      setContacts(response.data);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -46,82 +47,91 @@ const Contacts = () => {
   };
 
   const formatDate = (dateStr) => {
-    return new Date(dateStr).toLocaleString();
+    return new Date(dateStr).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
-        <div className="text-[#D4AF37] text-xl">Loading...</div>
+      <div className="admin-page">
+        <div className="admin-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "60vh" }}>
+          <p style={{ color: "var(--admin-muted)", fontSize: "1.2rem" }}>Loading...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="admin-page">
       {/* Header */}
-      <div className="bg-[#2a2a2a] border-b border-gray-800 px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <Link to="/admin/dashboard" className="text-[#D4AF37] hover:underline">← Back</Link>
-          <h1 className="text-2xl font-bold text-[#D4AF37]">Contact Leads</h1>
+      <div className="admin-header">
+        <div className="admin-header-left">
+          <Link to="/admin/dashboard" className="admin-back-btn">← Dashboard</Link>
+          <h1>Contact Leads</h1>
         </div>
-        <div className="w-full max-w-md">
+        <div style={{ width: "300px" }}>
           <input
             type="text"
-            placeholder="Search by name, email, phone..."
+            className="admin-form-input"
+            placeholder="Search by name, email or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#252525] border border-gray-700 rounded-lg px-4 py-2 text-[#ededed] focus:outline-none focus:border-[#D4AF37]"
           />
         </div>
       </div>
 
-      {/* Contacts List */}
-      <div className="p-6">
-        <div className="overflow-x-auto">
-          <table className="w-full bg-[#2a2a2a] rounded-xl overflow-hidden">
-            <thead className="bg-[#252525]">
-              <tr>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Name</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Email</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Phone</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Event Type</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Message</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Date</th>
-                <th className="text-left px-6 py-4 text-[#D4AF37] font-semibold">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-800">
-              {contacts.map((contact) => (
-                <tr key={contact.id} className="hover:bg-[#252525]">
-                  <td className="px-6 py-4 text-[#ededed]">{contact.name}</td>
-                  <td className="px-6 py-4 text-[#ededed]">{contact.email}</td>
-                  <td className="px-6 py-4 text-[#ededed]">{contact.phone || "-"}</td>
-                  <td className="px-6 py-4 text-[#ededed]">{contact.event_type || "-"}</td>
-                  <td className="px-6 py-4 text-[#ededed] max-w-xs truncate" title={contact.message}>
-                    {contact.message || "-"}
-                  </td>
-                  <td className="px-6 py-4 text-[#ededed] text-sm">
-                    {formatDate(contact.created_at)}
-                  </td>
-                  <td className="px-6 py-4">
-                    <button
-                      onClick={() => handleDelete(contact.id)}
-                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-sm transition"
-                    >
-                      Delete
-                    </button>
-                  </td>
+      {/* Content */}
+      <div className="admin-container">
+        <div className="admin-table-container">
+          {contacts.length === 0 && (
+            <div style={{ padding: "4rem", textAlign: "center", color: "var(--admin-muted)" }}>
+              {search ? "No leads found matching your search" : "No contact leads yet"}
+            </div>
+          )}
+          {contacts.length > 0 && (
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Event Type</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {contacts.map((contact) => (
+                  <tr key={contact.id}>
+                    <td>{contact.name}</td>
+                    <td>{contact.email}</td>
+                    <td>{contact.phone || "-"}</td>
+                    <td>{contact.event_type || "-"}</td>
+                    <td style={{ maxWidth: "250px" }} title={contact.message}>
+                      {contact.message ? (contact.message.length > 50 ? contact.message.substring(0, 50) + "..." : contact.message) : "-"}
+                    </td>
+                    <td>{formatDate(contact.created_at)}</td>
+                    <td>
+                      <button
+                        className="admin-btn admin-btn-danger"
+                        style={{ padding: "0.35rem 0.75rem", fontSize: "0.8rem" }}
+                        onClick={() => handleDelete(contact.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
-        {contacts.length === 0 && (
-          <div className="text-center text-[#ededed] py-12">
-            No leads yet.
-          </div>
-        )}
       </div>
     </div>
   );
