@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import "./admin.css";
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -24,9 +22,7 @@ const Contacts = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/contacts`, {
-        params: { search: search || undefined },
-      });
+      const response = await api.get("/contacts", { params: { search: search || undefined } });
       setContacts(response.data);
     } catch (error) {
       console.error("Error fetching contacts:", error);
@@ -38,11 +34,11 @@ const Contacts = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this lead?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/api/contacts/${id}`);
+      await api.delete(`/contacts/${id}`);
       fetchContacts();
     } catch (error) {
       console.error("Error deleting contact:", error);
-      alert("Failed to delete contact");
+      alert(error.response?.data?.error || "Failed to delete contact");
     }
   };
 

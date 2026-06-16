@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import "./admin.css";
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const Videos = () => {
   const [videos, setVideos] = useState([]);
@@ -27,7 +25,10 @@ const Videos = () => {
 
   const fetchVideos = async () => {
     try {
-      const { data, error } = await supabase.from("videos").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase
+        .from("videos")
+        .select("*")
+        .order("created_at", { ascending: false });
       if (error) throw error;
       setVideos(data);
     } catch (error) {
@@ -48,9 +49,9 @@ const Videos = () => {
     setSaving(true);
     try {
       if (editingVideo) {
-        await axios.put(`${API_BASE_URL}/api/videos/${editingVideo.id}`, formData);
+        await api.put(`/videos/${editingVideo.id}`, formData);
       } else {
-        await axios.post(`${API_BASE_URL}/api/videos`, formData);
+        await api.post("/videos", formData);
       }
       setShowForm(false);
       setEditingVideo(null);
@@ -58,7 +59,7 @@ const Videos = () => {
       fetchVideos();
     } catch (error) {
       console.error("Error saving video:", error);
-      alert("Failed to save video");
+      alert(error.response?.data?.error || "Failed to save video");
     } finally {
       setSaving(false);
     }
@@ -73,11 +74,11 @@ const Videos = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this video?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/api/videos/${id}`);
+      await api.delete(`/videos/${id}`);
       fetchVideos();
     } catch (error) {
       console.error("Error deleting video:", error);
-      alert("Failed to delete video");
+      alert(error.response?.data?.error || "Failed to delete video");
     }
   };
 

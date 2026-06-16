@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import "./admin.css";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const CATEGORIES = ["Wedding", "Pre-Wedding", "Haldi", "Mehendi", "Reception", "Engagement"];
 
 const Photos = () => {
@@ -28,7 +27,10 @@ const Photos = () => {
 
   const fetchPhotos = async () => {
     try {
-      const { data, error } = await supabase.from("photos").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase
+        .from("photos")
+        .select("*")
+        .order("created_at", { ascending: false });
       if (error) throw error;
       setPhotos(data);
     } catch (error) {
@@ -41,10 +43,9 @@ const Photos = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploading(true);
-
     try {
       if (editingPhoto) {
-        await axios.put(`${API_BASE_URL}/api/photos/${editingPhoto.id}`, {
+        await api.put(`/photos/${editingPhoto.id}`, {
           title: formData.title,
           category: formData.category,
         });
@@ -53,8 +54,10 @@ const Photos = () => {
         formDataToSend.append("title", formData.title);
         formDataToSend.append("category", formData.category);
         formDataToSend.append("image", formData.image);
-        await axios.post(`${API_BASE_URL}/api/photos`, formDataToSend, {
-          headers: { "Content-Type": "multipart/form-data" },
+        await api.post("/photos", formDataToSend, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
       }
       setShowForm(false);
@@ -63,7 +66,7 @@ const Photos = () => {
       fetchPhotos();
     } catch (error) {
       console.error("Error saving photo:", error);
-      alert("Failed to save photo");
+      alert(error.response?.data?.error || "Failed to save photo");
     } finally {
       setUploading(false);
     }
@@ -78,11 +81,11 @@ const Photos = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this photo?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/api/photos/${id}`);
+      await api.delete(`/photos/${id}`);
       fetchPhotos();
     } catch (error) {
       console.error("Error deleting photo:", error);
-      alert("Failed to delete photo");
+      alert(error.response?.data?.error || "Failed to delete photo");
     }
   };
 
