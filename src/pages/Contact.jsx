@@ -91,12 +91,14 @@ const response = await axios.post(
 
       {/* 1️⃣ Contact Hero */}
       <section className="section contact-hero">
+        <div className="contact-overlay">
         <div className="container">
           <h1>Let’s Begin Your Event Journey</h1>
           <p>
             Connect with our team to start planning your
             unforgettable celebration.
           </p>
+        </div>
         </div>
       </section>
 

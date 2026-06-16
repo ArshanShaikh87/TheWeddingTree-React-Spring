@@ -78,12 +78,14 @@ const Gallery = () => {
 
       {/* 1️⃣ Gallery Hero */}
       <section className="section gallery-page-hero">
+        <div className="about-overlay">
         <div className="container">
           <h1>Moments We’ve Crafted</h1>
           <p>
             A curated showcase of our signature celebrations,
             refined aesthetics, and timeless wedding experiences.
           </p>
+        </div>
         </div>
       </section>
 
