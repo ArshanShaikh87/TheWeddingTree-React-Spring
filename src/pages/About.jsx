@@ -1,4 +1,5 @@
 import "./About.css";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -195,9 +196,9 @@ const About = () => {
       into an elegant and seamless wedding experience.
     </p>
 
-    <a href="/contact" className="btn">
+    <Link to="/contact" className="btn">
       Schedule Your Consultation
-    </a>
+    </Link>
 
   </div>
 </section>

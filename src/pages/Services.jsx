@@ -1,4 +1,5 @@
 import "./Services.css";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
@@ -213,9 +214,9 @@ const Services = () => {
       seamless and memorable experience.
     </p>
 
-    <a href="/contact" className="btn">
+    <Link to="/contact" className="btn">
       Book Your Consultation
-    </a>
+    </Link>
 
   </div>
 </section>

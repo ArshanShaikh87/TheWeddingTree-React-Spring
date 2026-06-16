@@ -1,5 +1,6 @@
 import "./Footer.css";
 import { FaInstagram, FaYoutube, FaPinterestP, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
 
@@ -20,11 +21,11 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="footer-links">
           <h4>Quick Links</h4>
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/services">Services</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/contact">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/gallery">Gallery</Link>
+          <Link to="/contact">Contact</Link>
         </div>
 
         {/* Contact Info */}

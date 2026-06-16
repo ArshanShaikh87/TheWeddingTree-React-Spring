@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import t1 from "../assets/t1.png";
 import t2 from "../assets/t2.png";
 
@@ -157,9 +158,9 @@ return (
       <p>
         Where love meets luxury and every detail tells a story.
       </p>
-      <a href="/contact" className="btn">
+      <Link to="/contact" className="btn">
         Plan Your Dream Wedding
-      </a>
+      </Link>
     </div>
   </div>
 </section>
@@ -178,9 +179,9 @@ return (
         With a passion for perfection and luxury design,
         we craft weddings that reflect your unique journey.
       </p>
-      <a href="/About" className="btn">
+      <Link to="/about" className="btn">
         Learn More
-      </a>
+      </Link>
     </div>
 
     <div className="about-stats">
@@ -459,9 +460,9 @@ return (
     </p>
 
     <div className="cta-buttons">
-      <a href="/contact" className="btn">
+      <Link to="/contact" className="btn">
         Book Your Consultation
-      </a>
+      </Link>
     </div>
 
   </div>
