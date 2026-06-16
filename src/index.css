@@ -21,7 +21,7 @@ body {
 }
 
 /* ============================= */
-/* Design Tokens */
+/* Design Tokens (Responsive) */
 /* ============================= */
 
 :root {
@@ -30,11 +30,39 @@ body {
   --second-color: #ededed;
   --champagne: #8C7B6B;
 
+  /* Desktop Font Sizes */
   --big-font: 5rem;
   --h2-font: 2.7rem;
+  --h3-font: 1.6rem;
+  --h4-font: 1.3rem;
   --p-font: 1.1rem;
+  --small-font: 0.95rem;
 
   --container-width: 1200px;
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  :root {
+    --big-font: 2.5rem;
+    --h2-font: 2.2rem;
+    --h3-font: 1.4rem;
+    --h4-font: 1.2rem;
+    --p-font: 1rem;
+    --small-font: 0.9rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  :root {
+    --big-font: 2rem;
+    --h2-font: 1.8rem;
+    --h3-font: 1.3rem;
+    --h4-font: 1.1rem;
+    --p-font: 0.95rem;
+    --small-font: 0.85rem;
+  }
 }
 
 /* ============================= */
@@ -48,6 +76,16 @@ h1 {
 
 h2 {
   font-size: var(--h2-font);
+  color: var(--heading-color);
+}
+
+h3 {
+  font-size: var(--h3-font);
+  color: var(--heading-color);
+}
+
+h4 {
+  font-size: var(--h4-font);
   color: var(--heading-color);
 }
 

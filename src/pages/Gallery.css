@@ -15,15 +15,12 @@
 }
 
 .gallery-page-hero h1 {
-  font-size: var(--big-font);
-  color: var(--heading-color);
   margin-bottom: 20px;
 }
 
 .gallery-page-hero p {
   max-width: 700px;
   margin: 0 auto;
-  font-size: var(--p-font);
   color: var(--second-color);
 }
 
@@ -33,14 +30,10 @@
   .gallery-page-hero {
     padding: 100px 20px;
   }
-
   .gallery-page-hero h1 {
-    font-size: 2.5rem;
     line-height: 1.2;
   }
-
   .gallery-page-hero p {
-    font-size: 1rem;
     padding: 0 10px;
   }
 }
@@ -67,28 +60,12 @@
   width: 100%;
   height: 350px;
   object-fit: cover;
-  transition:
-    transform 0.5s ease,
-    filter 0.5s ease;
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-.gallery-page-item:hover img {
-  transform: scale(1.05);
-}
-.gallery-page-item:hover::after {
-  opacity: 1;
-}
 .gallery-page-item:hover img {
   transform: scale(1.08);
   filter: brightness(85%);
-}
-.gallery-page-item::after {
-  content: "";
-
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  opacity: 0;
-  transition: opacity 0.4s ease;
 }
 
 @media (max-width: 900px) {
@@ -101,11 +78,11 @@
   .gallery-page-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .gallery-page-item img {
     height: 250px;
   }
 }
+
 
 /* ================= Filters ================= */
 
@@ -156,6 +133,7 @@
   max-width: 90%;
   max-height: 85%;
   border-radius: 8px;
+  animation: fadeZoom 0.3s ease;
 }
 .close-btn {
   position: absolute;
@@ -168,7 +146,7 @@
 }
 
 .navbar-btn {
-  position: fixed; /* IMPORTANT CHANGE */
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
   font-size: 3rem;
@@ -197,13 +175,6 @@
   }
 }
 
-.gallery-lightbox img {
-  max-width: 90%;
-  max-height: 85%;
-  border-radius: 8px;
-  animation: fadeZoom 0.3s ease;
-}
-
 @keyframes fadeZoom {
   from {
     opacity: 0;
@@ -212,11 +183,6 @@
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-@media (max-width: 600px) {
-  .gallery-page-item img {
-    height: 250px;
   }
 }
 
@@ -306,8 +272,6 @@
 
 @media (max-width: 600px) {
   .gallery-video-grid {
-  
-  grid-template-columns: repeat(3, 1fr);
-  
-}
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

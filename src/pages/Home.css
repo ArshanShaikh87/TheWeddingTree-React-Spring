@@ -21,13 +21,11 @@
 }
 
 .hero-content h1 {
-  font-size: var(--big-font);
   line-height: 1.2;
   margin-bottom: 20px;
 }
 
 .hero-content p {
-  font-size: var(--p-font);
   margin-bottom: 30px;
   color: #ededed;
   max-width: 600px;
@@ -38,26 +36,10 @@
 /* ================= Mobile Hero ================= */
 
 @media (max-width: 768px) {
-
-  .hero-content h1 {
-    font-size: 2.2rem;   /* controlled size */
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-
-  .hero-content {
-    padding: 0 15px;
-  }
-
   .hero-section {
-    min-height: 90vh;  /* full 100vh heavy lagta hai mobile me */
+    min-height: 90vh;
   }
-
 }
-
 
 
 /* ================= About Section ================= */
@@ -98,27 +80,16 @@
 
 .stat-box h3 {
   font-size: 2.5rem;
-  color: var(--heading-color);
   margin-bottom: 10px;
 }
 
 .stat-box p {
-  font-size: 1rem;
-  color: var(--second-color);
+  font-size: var(--small-font);
 }
 
 /* Mobile */
 
 @media (max-width: 900px) {
-  .about-text h2 {
-  font-size: 2.2rem; 
-  }
-
-  .about-text p {
-  font-size: 1rem;
-  padding: 0 10px;
-}
-  
   .about-container {
     flex-direction: column;
     text-align: center;
@@ -139,7 +110,6 @@
 
 .section-title {
   margin-bottom: 60px;
-  
 }
 
 .why-grid {
@@ -158,19 +128,16 @@
 
 .why-box h3 {
   margin-bottom: 15px;
-  color: var(--heading-color);
   text-align: left;
 }
 
 .why-box p {
-  font-size: var(--p-font);
   text-align: left;
   color: var(--second-color);
 }
 
 .why-box:hover {
   transform: translateY(-5px);
-  /* background: #2f2f2f; */
 }
 
 
@@ -178,29 +145,12 @@
   .why-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .section-title {
-  font-size: 2.2rem; 
-  }
-
-  .why-box p {
-  font-size: 1rem;
-  padding: 0 10px;
-}
-  
 }
 
 @media (max-width: 600px) {
   .why-grid {
     grid-template-columns: 1fr;
   }
-  .section-title {
-  font-size: 2.2rem; 
-  }
-
-  .why-box p {
-  font-size: 1rem;
-  padding: 0 10px;
-}
 }
 
 
@@ -222,11 +172,6 @@
 
 .service-card h3 {
   margin-bottom: 15px;
-  color: var(--heading-color);
-}
-
-.service-card p {
-  font-size: var(--p-font);
 }
 
 .service-card:hover {
@@ -243,33 +188,15 @@
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .section-title {
-  font-size: 2.2rem; 
-  }
-
-  .service-card p {
-  font-size: 1rem;
-  padding: 0 10px;
-}
-
 }
 
 @media (max-width: 600px) {
   .services-grid {
     grid-template-columns: 1fr;
   }
-
   .service-card {
     text-align: left;
   }
-  .section-title {
-  font-size: 2.2rem; 
-  }
-
-  .service-card p {
-  font-size: 1rem;
-  padding: 0 10px;
-}
 }
 
 
@@ -349,17 +276,6 @@
   border: 2px solid var(--heading-color);
 }
 
-.testimonial-header h4 {
-  color: var(--heading-color);
-  font-weight: 600;
-}
-
-.testimonial-card p {
-  font-style: italic;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
 .testimonial-card:hover {
   background: #2f2f2f;
   transform: translateY(-5px);
@@ -402,24 +318,20 @@
 /* ================= Mobile Swipe ================= */
 
 @media (max-width: 768px) {
-
   .testimonial-grid {
     flex-wrap: nowrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px;
-    padding: 0 15px;   /* 👈 left-right space added */
+    padding: 0 15px;
   }
-
   .testimonial-card {
-    flex: 0 0 85%;     /* 👈 important */
+    flex: 0 0 85%;
     scroll-snap-align: center;
   }
-
   .testimonial-grid::-webkit-scrollbar {
     display: none;
   }
-
 }
 
 
@@ -492,18 +404,12 @@
 
 .time-box h3 {
   font-size: 2.5rem;
-  color: var(--heading-color);
 }
 
 .time-box p {
   margin-top: 5px;
-  font-size: 0.9rem;
+  font-size: var(--small-font);
   letter-spacing: 1px;
-}
-
-.countdown-info p {
-  margin: 5px 0;
-  font-size: var(--p-font);
 }
 
 
@@ -515,20 +421,17 @@
     rgba(0,0,0,0.85)
   ),
   url("../assets/Gallery2.jpg") center/cover no-repeat;
-
   text-align: center;
   padding: 120px 20px;
 }
 
 .final-cta-container h2 {
-  font-size: 2.8rem;
   margin-bottom: 20px;
 }
 
 .final-cta-container p {
   max-width: 600px;
   margin: 0 auto 40px auto;
-  font-size: var(--p-font);
 }
 
 .cta-buttons {
@@ -536,15 +439,12 @@
   justify-content: center;
 }
 
-
-
 .section {
   padding: 100px 0;
   text-align: center;
 }
 
 /* Temporary background shades to visualize sections */
-
 .about-section { background-color: #252525; }
 .why-section { background-color: var(--second-color) }
 .services-section { background-color: #252525; }
