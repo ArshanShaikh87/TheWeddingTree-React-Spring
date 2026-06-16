@@ -53,7 +53,7 @@
 .gallery-page-item {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0px;
 }
 
 .gallery-page-item img {
