@@ -25,12 +25,8 @@ const Videos = () => {
 
   const fetchVideos = async () => {
     try {
-      const { data, error } = await supabase
-        .from("videos")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      setVideos(data);
+      const response = await api.get("/videos");
+      setVideos(response.data);
     } catch (error) {
       console.error("Error fetching videos:", error);
     } finally {

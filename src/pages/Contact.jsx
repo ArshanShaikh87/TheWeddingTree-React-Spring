@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaPhoneAlt, FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import axios from "axios";
+import api from "../lib/api";
 
 const Contact = () => {
 
@@ -35,10 +35,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-const response = await axios.post(
-  "https://the-wedding-tree-backend-1.onrender.com/api/contact",
-  formData
-);
+      const response = await api.post("/contact", formData);
 
       if (response.status === 200) {
         setSuccessMessage("Your inquiry has been submitted successfully!");

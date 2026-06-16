@@ -27,12 +27,8 @@ const Photos = () => {
 
   const fetchPhotos = async () => {
     try {
-      const { data, error } = await supabase
-        .from("photos")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      setPhotos(data);
+      const response = await api.get("/photos");
+      setPhotos(response.data);
     } catch (error) {
       console.error("Error fetching photos:", error);
     } finally {
