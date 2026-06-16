@@ -1,6 +1,7 @@
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 import t1 from "../assets/t1.png";
 import t2 from "../assets/t2.png";
 
@@ -11,13 +12,6 @@ import p4 from "../assets/p4.jpeg";
 import p5 from "../assets/p5.jpeg";
 import p6 from "../assets/p6.jpeg";
 
-import g1 from "../assets/Gallery1.jpg";
-import g2 from "../assets/Gallery2.jpg";
-import g3 from "../assets/Gallery3.jpg";
-import g4 from "../assets/Gallery4.jpg";
-import g5 from "../assets/Gallery5.jpg";
-import g6 from "../assets/hero.jpeg";
-
 
 const Home = () => {
 
@@ -25,6 +19,7 @@ const Home = () => {
   const [years, setYears] = useState(0);
   const [weddings, setWeddings] = useState(0);
   const [venues, setVenues] = useState(0);
+  const [photos, setPhotos] = useState([]);
 
   const aboutRef = useRef(null);
   const [startCount, setStartCount] = useState(false);
@@ -75,6 +70,24 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [startCount]);
+
+  // ✅ Fetch Photos
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("photos")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(6);
+        if (error) throw error;
+        setPhotos(data);
+      } catch (error) {
+        console.error("Error fetching photos:", error);
+      }
+    };
+    fetchPhotos();
+  }, []);
   
 
 const [currentIndex, setCurrentIndex] = useState(0);
@@ -309,24 +322,11 @@ return (
     <h2 className="section-title">Featured Gallery</h2>
 
     <div className="gallery-grid">
-  <div className="gallery-item">
-    <img src={g1} alt="Wedding 1" />
-  </div>
-  <div className="gallery-item">
-    <img src={g2} alt="Wedding 2" />
-  </div>
-  <div className="gallery-item">
-    <img src={g3} alt="Wedding 3" />
-  </div>
-  <div className="gallery-item">
-    <img src={g4} alt="Wedding 4" />
-  </div>
-  <div className="gallery-item">
-    <img src={g5} alt="Wedding 5" />
-  </div>
-  <div className="gallery-item">
-    <img src={g6} alt="Wedding 6" />
-  </div>
+  {photos.slice(0, 6).map((photo) => (
+    <div key={photo.id} className="gallery-item">
+      <img src={photo.image_url} alt={photo.title} />
+    </div>
+  ))}
 </div>
 
 
